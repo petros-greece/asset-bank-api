@@ -12,6 +12,12 @@ class TreeController extends Controller
         return Tree::where('accountId', $accountId)->orderByDesc('created_at')->first();
     }
 
+    public function getTreeById($id, $accountId){
+        return Tree::where('id', $id)->
+                     where('accountId', $accountId)->
+                     first();
+    }
+
     public function getAccountTreeVersions($accountId){
         return Tree::where('accountId', $accountId)->get(['id', 'accountId','updated_at']);
     }
@@ -31,4 +37,13 @@ class TreeController extends Controller
         }
 
     }
+
+    public function getTreeVersions($accountId){
+        return Tree::where('accountId', $accountId)
+            ->orderByDesc('created_at')
+            ->limit(20)
+            ->get(['id','created_at']);
+    }
+
+
 }

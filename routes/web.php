@@ -28,17 +28,12 @@ $router->group(['prefix' => 'api'], function() use($router){
     $router->get('/tree/{accountId}', 'TreeController@getTree');
 
 
-
     $router->group(['middleware' => 'auth'], function () use ($router) {
-
-        $router->get('/categories', 'CategoriesController@index');
-        $router->get('/category/{id}', 'CategoriesController@category');
-        $router->post('/category', 'CategoriesController@storeNewCategory');
-        $router->put('/category/{id}', 'CategoriesController@update');
-        $router->delete('/category/{id}', 'CategoriesController@destroy');
 
         $router->post('/asset', 'AssetController@uploadImage');
         $router->post('/tree', 'TreeController@addTree');
+        $router->get('/tree-by-id/{accountId}/{id}', 'TreeController@getTreeById');
+        $router->get('/tree-versions/{accountId}', 'TreeController@getTreeVersions');
 
     });
 
