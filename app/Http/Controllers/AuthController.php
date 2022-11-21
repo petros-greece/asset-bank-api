@@ -62,6 +62,7 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
+
     public function login(Request $request)
     {
         $email = $request->email;
@@ -98,5 +99,11 @@ class AuthController extends Controller
         ],
           'user' => $user
         ]);
+    }
+
+    public function checkToken(Request $request)
+    {
+
+        return response()->json(['message' => 'Token OK']);
     }
 }

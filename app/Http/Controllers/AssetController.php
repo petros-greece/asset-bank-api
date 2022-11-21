@@ -63,6 +63,18 @@ class AssetController extends Controller
         }
     }
 
+    public function getAssets($accountId, $limit, $offset){
+        $total = Assets::where('accountId', $accountId)->count();
+        return [
+            'total' => $total,
+            'assets' => Assets::where('accountId', $accountId)->
+            orderByDesc('created_at')->
+            limit($limit)->
+            offset($offset)->
+            get()
+        ];
+    }
+
     public function getAsset(Request $request){
         //return response()->json(['status' => 'error', 'message' => $request->accountId], 404);
 

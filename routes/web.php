@@ -20,15 +20,16 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function() use($router){
 
-    $router->get('/assets/{accountId}/{path}/{ext}', 'AssetController@getAsset');
-
     $router->post('/register', 'AuthController@register');
     $router->post('/login', 'AuthController@login');
     $router->post('/logout', 'AuthController@logout');
-    $router->get('/tree/{accountId}', 'TreeController@getTree');
 
+    $router->get('/tree/{accountId}', 'TreeController@getTree');
+    $router->get('/asset/{accountId}/{path}/{ext}', 'AssetController@getAsset');
+    $router->get('/assets/{accountId}/{limit}/{offset}', 'AssetController@getAssets');
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
+        $router->get('/checkToken', 'AuthController@checkToken');
 
         $router->post('/asset', 'AssetController@uploadImage');
         $router->post('/tree', 'TreeController@addTree');
