@@ -26,11 +26,17 @@ $router->group(['prefix' => 'api'], function() use($router){
 
     $router->get('/tree/{accountId}', 'TreeController@getTree');
     $router->get('/asset/{accountId}/{path}/{ext}', 'AssetController@getAsset');
+    $router->get('/assetRow/{accountId}/{src}', 'AssetController@getAssetRow');
+    $router->get('/tagsForAccount/{accountId}', 'AssetController@getTagsForAccount');
     $router->get('/assets/{accountId}/{limit}/{offset}', 'AssetController@getAssets');
+    $router->get('/assetsForTags/{accountId}/{tags}', 'AssetController@getAssetsForTags');
+    $router->get('/assetsSize/{accountId}', 'AssetController@getAssetsTotalSize');
+
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
-        $router->get('/checkToken', 'AuthController@checkToken');
 
+        $router->get('/checkToken', 'AuthController@checkToken');
+        $router->post('/assetTags', 'AssetController@addTagsToAsset');
         $router->post('/asset', 'AssetController@uploadImage');
         $router->post('/tree', 'TreeController@addTree');
         $router->get('/tree-by-id/{accountId}/{id}', 'TreeController@getTreeById');

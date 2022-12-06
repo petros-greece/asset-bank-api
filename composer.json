@@ -8,6 +8,7 @@
         "php": "^8.0",
         "barryvdh/laravel-ide-helper": "^2.12",
         "flipbox/lumen-generator": "^9.1",
+        "intervention/image": "^2.7",
         "laravel/lumen-framework": "^9.0",
         "tymon/jwt-auth": "dev-develop"
     },
