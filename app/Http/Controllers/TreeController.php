@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tree;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TreeController extends Controller
@@ -21,7 +22,6 @@ class TreeController extends Controller
     public function getAccountTreeVersions($accountId){
         return Tree::where('accountId', $accountId)->get(['id', 'accountId','updated_at']);
     }
-
 
     public function addTree(Request $request){
         try{
@@ -44,6 +44,5 @@ class TreeController extends Controller
             ->limit(20)
             ->get(['id','created_at']);
     }
-
 
 }

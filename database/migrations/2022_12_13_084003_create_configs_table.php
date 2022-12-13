@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('assets', function (Blueprint $table) {
+        Schema::create('configs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('accountId')->unsigned();
-            $table->string ('src', 255)->default('');
-            $table->string ('ext', 55)->default('');
-            $table->json   ('tags')->default('[]');
-            $table->boolean('isDeleted')->default(false);
-            $table->integer('size')->default(0);
+            $table->json   ('accountSettings')->default('');
+            $table->json   ('editorSettings')->default('');
+            $table->json   ('comicEditorSettings')->default('');
             $table->foreign('accountId')->references('id')->on('users');
             $table->timestamps();
         });
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('assets');
+        //Schema::dropIfExists('configs');
     }
 };
