@@ -32,6 +32,9 @@ $router->group(['prefix' => 'api'], function() use($router){
     $router->get('/assetsForTags/{accountId}/{tags}', 'AssetController@getAssetsForTags');
     $router->get('/assetsSize/{accountId}', 'AssetController@getAssetsTotalSize');
 
+    $router->get('/accountSettings/{accountId}', 'ConfigController@getConfig');
+    $router->post('/editorSettings', 'ConfigController@addOrUpdateConfigEditorSettings');
+
 
     $router->group(['middleware' => 'auth'], function () use ($router) {
 

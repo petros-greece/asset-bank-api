@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('accountId')->unsigned();
-            $table->json   ('accountSettings')->default('');
-            $table->json   ('editorSettings')->default('');
-            $table->json   ('comicEditorSettings')->default('');
+            $table->json   ('accountSettings')->default('[]');
+            $table->json   ('editorSettings')->default('[]');
+            $table->json   ('comicEditorSettings')->default('[]');
             $table->foreign('accountId')->references('id')->on('users');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('configs');
+        Schema::dropIfExists('configs');
     }
 };
